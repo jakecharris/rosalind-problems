@@ -5,6 +5,7 @@ def count_dna_bases(dna_file):
     # open downloaded file
     with open(dna_file, 'r') as f:
         dna = f.read()
+    
     # count number of occurences of each base in DNA file
     base_counts = {'A':0, 'C':0, 'G':0, 'T':0}
     for base in base_counts.keys():
