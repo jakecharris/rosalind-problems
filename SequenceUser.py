@@ -9,7 +9,8 @@ GGCCTAGCTATCGAT
 class SequenceUser:
     def __init__(self, text):
         self.text = text
-
+    
+    # Convert downloaded FASTA .txt file into Python dict 
     def fasta_dictionary(self):
         fasta_dict = {}
         header = None
