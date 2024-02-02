@@ -9,32 +9,28 @@ def longest_common(input_fasta):
     # open fasta files with SeqIO.parse.seq
     fasta_seqs = list(SeqIO.parse(input_fasta, 'fasta'))
     seq1 = str(fasta_seqs[0].seq)  # AACCTTGG
-    seq2 = str(fasta_seqs[1].seq)  # ACACTGTGA    possible: AACTTG, AACTGG
+    seq2 = str(fasta_seqs[1].seq)  # ACACTGTGA    possible: AACTTG, AACTGG (len = 6)
     
     # loop thru seqs, find common bases
     c1 = 0
     c2 = 0
-    common_i = 0
     common_substring = ''
-    # subseq1 = seq1[c1:]
-    # subseq2 = seq2[c2:]
     while (c1 < len(seq1)) and (c2 < len(seq2)):
+        # if same letters, add to substring, move index window for both
         if seq1[c1] == seq2[c2]:
             common_substring += seq1[c1]
             c1 += 1
             c2 += 1
-            common_i += 1
-            print(c1, seq1[c1:], c2, seq2[c2:], common_substring)
-        elif (seq1[c1] != seq2[c2]) and (c2 > len(seq2)):
-            c2 += 1
-            print(c1, seq1[c1:], c2, seq2[c2:], common_substring)
-        else:
+            # print(c1, seq1[c1:], c2, seq2[c2:], common_substring)
+        # if seq1 letter isn't in the remainder of seq2, move seq1 window only
+        elif (seq1[c1] != seq2[c2]) and (seq1[c1] not in seq2[c2:]):
             c1 += 1
-            c2 = common_i
-            common_i = c1
-            print(c1, seq1[c1:], c2, seq2[c2:], common_substring)
-    print(common_substring) # AACTGG len = 6
+        # if seq1 & seq2 letters don't match, move seq2 window only
+        else:
+            c2 += 1
+    
+    print(common_substring)
     
 
 if __name__ == '__main__':
-    longest_common('/Users/jakeharris/Desktop/lcsq_example.fasta.txt')
+    longest_common('/Users/jakeharris/Downloads/rosalind_lcsq (3).txt')
