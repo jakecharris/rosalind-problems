@@ -1,11 +1,11 @@
 # Finding a shared spliced motif
 '''Given two DNA strings in FASTA format, find a longest common
-substring of each. (Only one solution is needed)
+subsequence between them. (Only one solution is needed)
 Link: https://rosalind.info/problems/lcsq/'''
 
 from Bio import SeqIO
 
-def longest_common(input_fasta):
+def longest_common_subseq(input_fasta):
     # open fasta files with SeqIO.parse.seq
     fasta_seqs = list(SeqIO.parse(input_fasta, 'fasta'))
     seq1 = str(fasta_seqs[0].seq)  # AACCTTGG
@@ -33,4 +33,4 @@ def longest_common(input_fasta):
     
 
 if __name__ == '__main__':
-    longest_common('/Users/jakeharris/Downloads/rosalind_lcsq (3).txt')
+    longest_common_subseq('/Users/jakeharris/Downloads/rosalind_lcsq (3).txt')
